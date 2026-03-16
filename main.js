@@ -113,6 +113,37 @@ document.addEventListener('DOMContentLoaded', () => {
             heroVideos[currentVideoIndex].classList.add('active');
         }, 8000);
     }
+    // Enquiry Form → Google Sheet
+    const enquiryForm = document.getElementById('enquiryForm');
+    if (enquiryForm) {
+        enquiryForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="ph ph-circle-notch"></i> Sending...';
+
+            const data = Object.fromEntries(new FormData(this));
+
+            try {
+                await fetch('https://script.google.com/macros/s/AKfycbyx1i3FfF06u1oWT3c97dyoeBtxGyJ8uZFq5p-HM9kaoZLSw3D33NYfPD7nqqo2qOTc/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(data)
+                });
+            } catch (err) {
+                // no-cors means we can't read the response, but the data is sent
+            }
+
+            submitBtn.innerHTML = '✅ Enquiry Sent!';
+            submitBtn.style.background = '#22c55e';
+            this.reset();
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="ph ph-paper-plane-tilt"></i> Submit Enquiry';
+                submitBtn.style.background = '';
+            }, 4000);
+        });
+    }
 
     // 6. Testimonial Slider
     const tTrack = document.getElementById('tsliderTrack');
