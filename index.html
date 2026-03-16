@@ -204,33 +204,107 @@
         <div class="container">
             <div class="section-header reveal-up">
                 <h2 class="section-title">What They <span class="text-primary">Say</span></h2>
+                <p class="section-subtitle">Hear from our students and parents about their experience at Vidyatam
+                    Classes</p>
                 <div class="title-underline"></div>
             </div>
-            <div class="testimonials-slider reveal-up">
-                <div class="testimonial-card glass-card">
-                    <div class="quote-icon"><i class="ph-fill ph-quotes"></i></div>
-                    <p class="testimonial-text">"Vidyatam Classes transformed my approach to studies. The teachers made
-                        complex science concepts so simple. I scored 96% in my final exams!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar"><i class="ph-fill ph-user-circle"></i></div>
-                        <div class="author-info">
-                            <h5>Rahul S.</h5>
-                            <span>8th Grade Student</span>
+
+            <div class="tslider-wrapper reveal-up">
+                <!-- Slider Track -->
+                <div class="tslider-track" id="tsliderTrack">
+
+                    <!-- Card 1 -->
+                    <div class="tcard">
+                        <div class="tcard-photo">
+                            <img src="./assets/student1.png" alt="Rahul S.">
+                        </div>
+                        <div class="tcard-body">
+                            <div class="tcard-stars">★★★★★</div>
+                            <p class="tcard-quote">"Ms. Ajetrao Ma'am explained every concept so clearly! My maths
+                                improved greatly and I now score much better in school tests."</p>
+                            <div class="tcard-author">
+                                <h5>Rahul S.</h5>
+                                <span>5th Standard Student</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card glass-card">
-                    <div class="quote-icon"><i class="ph-fill ph-quotes"></i></div>
-                    <p class="testimonial-text">"As a parent, I am highly impressed by the personal attention my
-                        daughter receives. The regular testing system keeps us updated on her actual progress."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar"><i class="ph-fill ph-user-circle"></i></div>
-                        <div class="author-info">
-                            <h5>Mrs. Sharma</h5>
-                            <span>Parent</span>
+
+                    <!-- Card 2 -->
+                    <div class="tcard">
+                        <div class="tcard-photo">
+                            <img src="./assets/parent1.png" alt="Mrs. Sharma">
+                        </div>
+                        <div class="tcard-body">
+                            <div class="tcard-stars">★★★★★</div>
+                            <p class="tcard-quote">"My daughter's confidence has increased so much! The personal
+                                attention and regular tests keep us informed about her progress every week."</p>
+                            <div class="tcard-author">
+                                <h5>Mrs. Sharma</h5>
+                                <span>Parent of 4th Standard</span>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Card 3 -->
+                    <div class="tcard">
+                        <div class="tcard-photo">
+                            <img src="./assets/student2.png" alt="Priya K.">
+                        </div>
+                        <div class="tcard-body">
+                            <div class="tcard-stars">★★★★★</div>
+                            <p class="tcard-quote">"I used to struggle with reading and writing. After joining Vidyatam,
+                                I now enjoy studying and love going to class every day!"</p>
+                            <div class="tcard-author">
+                                <h5>Priya K.</h5>
+                                <span>2nd Standard Student</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="tcard">
+                        <div class="tcard-photo">
+                            <img src="./assets/parent2.png" alt="Mr. Patil">
+                        </div>
+                        <div class="tcard-body">
+                            <div class="tcard-stars">★★★★★</div>
+                            <p class="tcard-quote">"Best coaching in the area for primary students. My son's
+                                fundamentals are rock-solid now. Highly recommend Vidyatam Classes!"</p>
+                            <div class="tcard-author">
+                                <h5>Mr. Patil</h5>
+                                <span>Parent of 6th Standard</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="tcard">
+                        <div class="tcard-photo">
+                            <img src="./assets/student1.png" alt="Arjun M.">
+                        </div>
+                        <div class="tcard-body">
+                            <div class="tcard-stars">★★★★★</div>
+                            <p class="tcard-quote">"The friendly environment helps me learn without stress. Ma'am is
+                                very patient and explains everything until we understand."</p>
+                            <div class="tcard-author">
+                                <h5>Arjun M.</h5>
+                                <span>7th Standard Student</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <!-- Prev / Next Arrows -->
+                <button class="tslider-arrow tslider-prev" id="tPrev" aria-label="Previous">
+                    <i class="ph ph-caret-left"></i>
+                </button>
+                <button class="tslider-arrow tslider-next" id="tNext" aria-label="Next">
+                    <i class="ph ph-caret-right"></i>
+                </button>
+
+                <!-- Dot Indicators -->
+                <div class="tslider-dots" id="tDots"></div>
             </div>
         </div>
     </section>

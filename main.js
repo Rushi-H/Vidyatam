@@ -108,14 +108,62 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentVideoIndex = 0;
 
         setInterval(() => {
-            // Remove active class from current video
             heroVideos[currentVideoIndex].classList.remove('active');
-
-            // Move to next video (loop back to start if at the end)
             currentVideoIndex = (currentVideoIndex + 1) % heroVideos.length;
-
-            // Add active class to new current video
             heroVideos[currentVideoIndex].classList.add('active');
-        }, 8000); // 8 seconds per video
+        }, 8000);
+    }
+
+    // 6. Testimonial Slider
+    const tTrack = document.getElementById('tsliderTrack');
+    const tPrevBtn = document.getElementById('tPrev');
+    const tNextBtn = document.getElementById('tNext');
+    const tDotsContainer = document.getElementById('tDots');
+
+    if (tTrack) {
+        const tCards = tTrack.querySelectorAll('.tcard');
+        let tCurrent = 0;
+        let tAutoPlay;
+
+        // Build dots
+        tCards.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'tslider-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+            dot.addEventListener('click', () => goTo(i));
+            tDotsContainer.appendChild(dot);
+        });
+
+        function updateDots() {
+            tDotsContainer.querySelectorAll('.tslider-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === tCurrent);
+            });
+        }
+
+        function goTo(index) {
+            tCards[tCurrent].classList.remove('active');
+            tCurrent = (index + tCards.length) % tCards.length;
+            tTrack.style.transform = `translateX(-${tCurrent * 100}%)`;
+            tCards[tCurrent].classList.add('active');
+            updateDots();
+        }
+
+        // Activate first card
+        tCards[0].classList.add('active');
+
+        // Arrow buttons
+        tPrevBtn.addEventListener('click', () => { goTo(tCurrent - 1); resetAutoPlay(); });
+        tNextBtn.addEventListener('click', () => { goTo(tCurrent + 1); resetAutoPlay(); });
+
+        // Auto play
+        function startAutoPlay() {
+            tAutoPlay = setInterval(() => goTo(tCurrent + 1), 5000);
+        }
+        function resetAutoPlay() {
+            clearInterval(tAutoPlay);
+            startAutoPlay();
+        }
+
+        startAutoPlay();
     }
 });
