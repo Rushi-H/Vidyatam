@@ -1054,6 +1054,130 @@ ul {
     box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.1);
 }
 
+/* Two-column form row */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Form intro text */
+.form-intro {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+}
+
+/* Required asterisk */
+.required {
+    color: #e53e3e;
+}
+
+/* Form note below submit */
+.form-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Submit button icon alignment */
+.btn i {
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+/* Updated h3 spacing */
+.contact-form-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+/* =========================================
+   QUICK CONTACT STRIP
+   ========================================= */
+.quick-contact-strip {
+    background: linear-gradient(135deg, var(--core-royal-blue), var(--core-blue-dark));
+    padding: 24px 0;
+}
+
+.quick-contact-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.qc-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 28px;
+    border-radius: var(--border-radius-md);
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--core-white);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition-fast);
+    backdrop-filter: blur(8px);
+    min-width: 200px;
+}
+
+.qc-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.qc-btn i {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+}
+
+.qc-btn div {
+    display: flex;
+    flex-direction: column;
+}
+
+.qc-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.75;
+}
+
+.qc-value {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.qc-whatsapp i {
+    color: #25D366;
+}
+
+.qc-form i {
+    color: #f4b400;
+}
+
+@media (max-width: 768px) {
+    .qc-btn {
+        flex: 1;
+        min-width: 140px;
+        padding: 14px 16px;
+    }
+    .qc-value {
+        font-size: 0.875rem;
+    }
+}
+
 /* =========================================
    FOOTER
    ========================================= */

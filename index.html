@@ -309,14 +309,47 @@
         </div>
     </section>
 
+    <!-- Quick Contact Strip -->
+    <section class="quick-contact-strip">
+        <div class="container">
+            <div class="quick-contact-row">
+                <a href="tel:+919860011531" class="qc-btn qc-call">
+                    <i class="ph-fill ph-phone-call"></i>
+                    <div>
+                        <span class="qc-label">Call Now</span>
+                        <span class="qc-value">+91 98601 1531</span>
+                    </div>
+                </a>
+                <a href="https://wa.me/91986011531?text=Hello%20I%20want%20admission%20details%20for%20Vidyatam%20Classes"
+                    target="_blank" class="qc-btn qc-whatsapp">
+                    <i class="ph-fill ph-whatsapp-logo"></i>
+                    <div>
+                        <span class="qc-label">WhatsApp</span>
+                        <span class="qc-value">Chat With Us</span>
+                    </div>
+                </a>
+                <a href="#contact" class="qc-btn qc-form">
+                    <i class="ph-fill ph-clipboard-text"></i>
+                    <div>
+                        <span class="qc-label">Online Form</span>
+                        <span class="qc-value">Admission Enquiry</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact section">
         <div class="container">
+            <div class="section-header reveal-up">
+                <h2 class="section-title">Contact Us / <span class="gradient-text">Admission Enquiry</span></h2>
+                <p class="section-subtitle">Fill the form below and we will get back to you within 24 hours.</p>
+                <div class="title-underline"></div>
+            </div>
             <div class="contact-grid">
+                <!-- Left: Info + Map -->
                 <div class="contact-info reveal-left">
-                    <h2 class="section-title">Get in <span class="gradient-text">Touch</span></h2>
-                    <p>Ready to secure your bright future? Contact us today for admission enquiries.</p>
-
                     <ul class="contact-details">
                         <li>
                             <div class="icon-box"><i class="ph ph-phone"></i></div>
@@ -338,7 +371,7 @@
                             <div class="icon-box"><i class="ph ph-map-pin"></i></div>
                             <div>
                                 <h5>Location</h5>
-                                <p>Pore Complex,Sangola-Akluj Rd, opposite English School, <br>Velapur, Maharashtra
+                                <p>Pore Complex, Sangola-Akluj Rd, opposite English School,<br>Velapur, Maharashtra
                                     413113</p>
                             </div>
                         </li>
@@ -354,38 +387,67 @@
                     </div>
                 </div>
 
+                <!-- Right: Netlify Form -->
                 <div class="contact-form-container reveal-right glass-card">
-                    <h3>Admission Enquiry</h3>
-                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Enquiry Sent Successfully!');">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" placeholder="Enter your full name" required>
+                    <h3>Admission Enquiry Form</h3>
+                    <p class="form-intro">Interested in enrolling your child? Share your details and we'll reach out to you.</p>
+
+                    <!-- Netlify Form -->
+                    <form class="contact-form" name="enquiry" method="POST" data-netlify="true"
+                        netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="enquiry">
+                        <!-- Honeypot spam field -->
+                        <p style="display:none;">
+                            <label>Don't fill this: <input name="bot-field"></label>
+                        </p>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="student-name">Student Name <span class="required">*</span></label>
+                                <input type="text" id="student-name" name="student-name"
+                                    placeholder="Enter student's full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="parent-name">Parent / Guardian Name</label>
+                                <input type="text" id="parent-name" name="parent-name"
+                                    placeholder="Enter parent's name">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="class">Class / Standard <span class="required">*</span></label>
+                                <select id="class" name="class" required>
+                                    <option value="" disabled selected>Select class</option>
+                                    <option value="LKG">LKG</option>
+                                    <option value="UKG">UKG</option>
+                                    <option value="1st Standard">1st Standard</option>
+                                    <option value="2nd Standard">2nd Standard</option>
+                                    <option value="3rd Standard">3rd Standard</option>
+                                    <option value="4th Standard">4th Standard</option>
+                                    <option value="5th Standard">5th Standard</option>
+                                    <option value="6th Standard">6th Standard</option>
+                                    <option value="7th Standard">7th Standard</option>
+                                    <option value="8th Standard">8th Standard</option>
+                                </select>
+                            </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="class">Standard/Class</label>
-                            <select id="class" required>
-                                <option value="" disabled selected>Select your class</option>
-                                <option value="LKG">LKG</option>
-                                <option value="UKG">UKG</option>
-                                <option value="1">1st Standard</option>
-                                <option value="2">2nd Standard</option>
-                                <option value="3">3rd Standard</option>
-                                <option value="4">4th Standard</option>
-                                <option value="5">5th Standard</option>
-                                <option value="6">6th Standard</option>
-                                <option value="7">7th Standard</option>
-                                <option value="8">8th Standard</option>
-                            </select>
+                            <label for="message">Message / Query</label>
+                            <textarea id="message" name="message" rows="4"
+                                placeholder="Any questions about admission, fees, schedule?"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" rows="4" placeholder="Any specific questions?"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Submit Enquiry</button>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="ph ph-paper-plane-tilt"></i> Submit Enquiry
+                        </button>
+
+                        <p class="form-note"><i class="ph ph-shield-check"></i> Your information is safe with us. We will not share it with anyone.</p>
                     </form>
                 </div>
             </div>
