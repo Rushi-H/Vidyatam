@@ -20,8 +20,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            right: 0;
+            bottom: 0;
             z-index: 999999;
             background: rgba(0, 0, 0, 0.75);
             display: flex;
@@ -40,10 +40,12 @@
         }
 
         .sp-modal {
+            box-sizing: border-box;
             background: #fff;
             border-radius: 20px;
             max-width: 480px;
-            width: 100%;
+            width: calc(100% - 32px);
+            margin: 16px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 24px 60px rgba(0, 0, 0, .28);
@@ -334,6 +336,16 @@
                     <a href="#contact" class="btn btn-outline-light btn-large">Contact Us</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Summer Camp Promo Banner -->
+    <section class="banner-section section-padding">
+        <div class="container">
+            <a href="summerCamp.html" class="promo-banner-link reveal-up">
+                <img src="./assets/summerCampBanner.jpg" alt="Vidyatam Summer Camp 2026 - Join Now"
+                    class="promo-banner-img">
+            </a>
         </div>
     </section>
 
@@ -791,8 +803,9 @@
             <button class="sp-close" id="epClose" aria-label="Close">✕</button>
             <div class="ep-ribbon">🎁 Special Offer Inside!</div>
             <div class="sp-body">
-                <h2 class="sp-title ep-title">Wait! Don't Miss This 🎯</h2>
-                <p class="sp-subtitle">Your child can enjoy learning this summer with fun and activities!</p>
+                <h2 class="sp-title ep-title">धम्माल उन्हाळी शिबिर 2026</h2>
+                <h3 class="sp-title ep-title">Wait! Don't Miss This 🎯</h3 <p class="sp-subtitle">Your child can enjoy
+                learning this summer with fun and activities!</p>
                 <ul class="sp-details">
                     <li>📚 LKG to 8th Students</li>
                     <li>📅 Starting <strong>1 April 2026</strong></li>

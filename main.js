@@ -221,7 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ------ POPUP 1: Auto Popup with Countdown ------
     var summerPopup = document.getElementById('summerPopup');
-    if (summerPopup && !localStorage.getItem('vidyatam_popup_seen')) {
+    var popupSeen = false;
+    try { popupSeen = localStorage.getItem('vidyatam_popup_seen'); } catch (e) { }
+    if (summerPopup && !popupSeen) {
         // Countdown to April 1 2026
         var campDate = new Date('2026-04-01T00:00:00').getTime();
         function updateCountdown() {
@@ -238,19 +240,19 @@ document.addEventListener('DOMContentLoaded', () => {
             var h = Math.floor((diff % 86400000) / 3600000);
             var m = Math.floor((diff % 3600000) / 60000);
             var s = Math.floor((diff % 60000) / 1000);
-            document.getElementById('spDays').textContent  = String(d).padStart(2, '0');
+            document.getElementById('spDays').textContent = String(d).padStart(2, '0');
             document.getElementById('spHours').textContent = String(h).padStart(2, '0');
-            document.getElementById('spMins').textContent  = String(m).padStart(2, '0');
-            document.getElementById('spSecs').textContent  = String(s).padStart(2, '0');
+            document.getElementById('spMins').textContent = String(m).padStart(2, '0');
+            document.getElementById('spSecs').textContent = String(s).padStart(2, '0');
         }
         updateCountdown();
         var countdownInterval = setInterval(updateCountdown, 1000);
 
-        // Show after 4 seconds
+        // Show after 3 seconds
         setTimeout(function () {
             showPopup(summerPopup);
-            localStorage.setItem('vidyatam_popup_seen', '1');
-        }, 4000);
+            try { localStorage.setItem('vidyatam_popup_seen', '1'); } catch (e) { }
+        }, 300);
 
         // Close button
         document.getElementById('spClose').addEventListener('click', function () {
@@ -269,13 +271,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ------ POPUP 2: Exit-Intent Popup ------
     var exitPopup = document.getElementById('exitPopup');
-    if (exitPopup && !localStorage.getItem('vidyatam_exit_popup_seen')) {
+    var exitPopupSeen = false;
+    try { exitPopupSeen = localStorage.getItem('vidyatam_exit_popup_seen'); } catch (e) { }
+    if (exitPopup && !exitPopupSeen) {
         var exitTriggered = false;
         document.addEventListener('mouseleave', function (e) {
             if (e.clientY <= 5 && !exitTriggered) {
                 exitTriggered = true;
                 showPopup(exitPopup);
-                localStorage.setItem('vidyatam_exit_popup_seen', '1');
+                try { localStorage.setItem('vidyatam_exit_popup_seen', '1'); } catch (e) { }
             }
         });
 
