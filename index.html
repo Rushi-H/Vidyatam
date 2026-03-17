@@ -11,10 +11,283 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=10">
     <!-- Phosphor Icons for minimalist UI icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* POPUP STYLES — inline to guarantee load */
+        .sp-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .sp-overlay.sp-visible {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .sp-modal {
+            background: #fff;
+            border-radius: 20px;
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .28);
+            transform: scale(.88);
+            transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .sp-overlay.sp-visible .sp-modal {
+            transform: scale(1);
+        }
+
+        .sp-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            z-index: 10;
+            background: rgba(255, 255, 255, .9);
+            border: none;
+            font-size: 1rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+            transition: background .2s, transform .2s;
+        }
+
+        .sp-close:hover {
+            background: #eee;
+            transform: rotate(90deg);
+        }
+
+        .sp-topbar {
+            background: linear-gradient(135deg, #0033a0, #1a56db);
+            padding: 16px 24px 14px;
+            text-align: center;
+        }
+
+        .sp-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, .18);
+            color: #fff;
+            font-weight: 700;
+            font-size: .88rem;
+            padding: 4px 14px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, .3);
+        }
+
+        .sp-body {
+            padding: 20px 24px 24px;
+        }
+
+        .sp-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #0033a0;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .sp-subtitle {
+            color: #555;
+            font-size: .95rem;
+            margin-bottom: 14px;
+        }
+
+        .sp-details {
+            list-style: none;
+            margin-bottom: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .sp-details li {
+            font-size: .92rem;
+            color: #444;
+            padding: 5px 10px;
+            background: #f0f5ff;
+            border-radius: 7px;
+            border-left: 3px solid #0033a0;
+        }
+
+        .sp-countdown-wrap {
+            background: linear-gradient(135deg, #0033a0, #1a56db);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .sp-countdown-label {
+            color: rgba(255, 255, 255, .8);
+            font-size: .72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .sp-countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sp-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 48px;
+            background: rgba(255, 255, 255, .15);
+            border-radius: 9px;
+            padding: 6px 8px;
+        }
+
+        .sp-unit span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #FFD23F;
+            line-height: 1;
+        }
+
+        .sp-unit small {
+            font-size: .62rem;
+            color: rgba(255, 255, 255, .7);
+            margin-top: 2px;
+        }
+
+        .sp-colon {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, .5);
+            margin-bottom: 12px;
+        }
+
+        .sp-urgency {
+            background: #fff3e0;
+            color: #b45309;
+            font-weight: 700;
+            font-size: .85rem;
+            padding: 7px 12px;
+            border-radius: 7px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .sp-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .sp-btn-primary {
+            flex: 1;
+            background: linear-gradient(135deg, #0033a0, #1a56db);
+            color: #fff;
+            text-align: center;
+            padding: 12px 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: .92rem;
+            text-decoration: none;
+            transition: all .2s;
+            box-shadow: 0 5px 16px rgba(0, 51, 160, .3);
+        }
+
+        .sp-btn-primary:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .sp-btn-wa {
+            flex: 1;
+            background: #25D366;
+            color: #fff;
+            text-align: center;
+            padding: 12px 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: .92rem;
+            text-decoration: none;
+            transition: all .2s;
+            box-shadow: 0 5px 16px rgba(37, 211, 102, .3);
+        }
+
+        .sp-btn-wa:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .ep-overlay .sp-topbar {
+            background: linear-gradient(135deg, #FF6B35, #ff006e);
+        }
+
+        .ep-title {
+            color: #FF6B35;
+        }
+
+        .ep-ribbon {
+            background: linear-gradient(135deg, #FF6B35, #ff006e);
+            color: white;
+            text-align: center;
+            padding: 9px;
+            font-weight: 800;
+            font-size: .88rem;
+        }
+
+        .ep-modal .sp-details li {
+            border-left-color: #FF6B35;
+        }
+
+        .ep-modal .sp-btn-primary {
+            background: linear-gradient(135deg, #FF6B35, #ff006e);
+            box-shadow: 0 5px 16px rgba(255, 107, 53, .3);
+        }
+
+        @media(max-width:520px) {
+            .sp-title {
+                font-size: 1.3rem;
+            }
+
+            .sp-body {
+                padding: 16px 16px 20px;
+            }
+
+            .sp-btns {
+                flex-direction: column;
+            }
+
+            .sp-unit {
+                min-width: 40px;
+            }
+
+            .sp-unit span {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
+
 
 <body>
     <!-- Navigation -->
@@ -472,7 +745,83 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+
+    <!-- ======= POPUP 1: Auto Popup (4s) with Countdown ======= -->
+    <div id="summerPopup" class="sp-overlay" role="dialog" aria-modal="true" aria-label="Summer Camp 2026">
+        <div class="sp-modal">
+            <button class="sp-close" id="spClose" aria-label="Close">✕</button>
+            <!-- Decorative top bar -->
+            <div class="sp-topbar">
+                <span class="sp-tag">🌞 उन्हाळी शिबिर 2026</span>
+            </div>
+            <div class="sp-body">
+                <h2 class="sp-title">🎉 Summer Camp 2026</h2>
+                <p class="sp-subtitle">Fun Learning Camp for LKG to 8th Students</p>
+                <ul class="sp-details">
+                    <li>📅 Starting from <strong>1 April</strong></li>
+                    <li>📚 Study + Activities + Games</li>
+                    <li>🎯 Limited Seats Available</li>
+                </ul>
+                <!-- Countdown Timer -->
+                <div class="sp-countdown-wrap">
+                    <p class="sp-countdown-label">Camp Starts In:</p>
+                    <div class="sp-countdown" id="spCountdown">
+                        <div class="sp-unit"><span id="spDays">00</span><small>Days</small></div>
+                        <div class="sp-colon">:</div>
+                        <div class="sp-unit"><span id="spHours">00</span><small>Hours</small></div>
+                        <div class="sp-colon">:</div>
+                        <div class="sp-unit"><span id="spMins">00</span><small>Mins</small></div>
+                        <div class="sp-colon">:</div>
+                        <div class="sp-unit"><span id="spSecs">00</span><small>Secs</small></div>
+                    </div>
+                </div>
+                <p class="sp-urgency">⚠️ Limited Seats — Hurry Up!</p>
+                <div class="sp-btns">
+                    <a href="#contact" class="sp-btn-primary" id="spEnroll">🎯 Enroll Now</a>
+                    <a href="https://wa.me/91986011531?text=Hello%20I%20want%20to%20join%20Vidyatam%20Classes%20Summer%20Camp"
+                        target="_blank" class="sp-btn-wa">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= POPUP 2: Exit-Intent Popup ======= -->
+    <div id="exitPopup" class="sp-overlay ep-overlay" role="dialog" aria-modal="true" aria-label="Exit Intent">
+        <div class="sp-modal ep-modal">
+            <button class="sp-close" id="epClose" aria-label="Close">✕</button>
+            <div class="ep-ribbon">🎁 Special Offer Inside!</div>
+            <div class="sp-body">
+                <h2 class="sp-title ep-title">Wait! Don't Miss This 🎯</h2>
+                <p class="sp-subtitle">Your child can enjoy learning this summer with fun and activities!</p>
+                <ul class="sp-details">
+                    <li>📚 LKG to 8th Students</li>
+                    <li>📅 Starting <strong>1 April 2026</strong></li>
+                    <li>🎁 <strong>Special Discount</strong> for Early Admission</li>
+                </ul>
+                <p class="sp-urgency" style="background: #fff3cd; color: #b45309;">🔥 Only Few Seats Left — Register
+                    Today!</p>
+                <div class="sp-btns">
+                    <a href="#contact" class="sp-btn-primary" id="epEnroll">🎯 Join Now</a>
+                    <a href="https://wa.me/91986011531?text=Hello%20I%20want%20to%20join%20Vidyatam%20Classes%20Summer%20Camp"
+                        target="_blank" class="sp-btn-wa">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="main.js?v=4"></script>
 </body>
 
 </html>

@@ -198,3 +198,93 @@ document.addEventListener('DOMContentLoaded', () => {
         startAutoPlay();
     }
 });
+
+/* ============================================
+   SUMMER CAMP POPUPS
+   ============================================ */
+(function () {
+    // ------ Helpers ------
+    function showPopup(el) {
+        el.classList.add('sp-visible');
+        document.body.style.overflow = 'hidden';
+    }
+    function hidePopup(el) {
+        el.classList.remove('sp-visible');
+        document.body.style.overflow = '';
+    }
+    function closeOnCTAClick(popup) {
+        // Clicking an anchor inside closes the popup
+        popup.querySelectorAll('a[href^="#"]').forEach(function (a) {
+            a.addEventListener('click', function () { hidePopup(popup); });
+        });
+    }
+
+    // ------ POPUP 1: Auto Popup with Countdown ------
+    var summerPopup = document.getElementById('summerPopup');
+    if (summerPopup && !localStorage.getItem('vidyatam_popup_seen')) {
+        // Countdown to April 1 2026
+        var campDate = new Date('2026-04-01T00:00:00').getTime();
+        function updateCountdown() {
+            var now = Date.now();
+            var diff = campDate - now;
+            if (diff <= 0) {
+                document.getElementById('spDays').textContent = '00';
+                document.getElementById('spHours').textContent = '00';
+                document.getElementById('spMins').textContent = '00';
+                document.getElementById('spSecs').textContent = '00';
+                return;
+            }
+            var d = Math.floor(diff / 86400000);
+            var h = Math.floor((diff % 86400000) / 3600000);
+            var m = Math.floor((diff % 3600000) / 60000);
+            var s = Math.floor((diff % 60000) / 1000);
+            document.getElementById('spDays').textContent  = String(d).padStart(2, '0');
+            document.getElementById('spHours').textContent = String(h).padStart(2, '0');
+            document.getElementById('spMins').textContent  = String(m).padStart(2, '0');
+            document.getElementById('spSecs').textContent  = String(s).padStart(2, '0');
+        }
+        updateCountdown();
+        var countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Show after 4 seconds
+        setTimeout(function () {
+            showPopup(summerPopup);
+            localStorage.setItem('vidyatam_popup_seen', '1');
+        }, 4000);
+
+        // Close button
+        document.getElementById('spClose').addEventListener('click', function () {
+            hidePopup(summerPopup);
+            clearInterval(countdownInterval);
+        });
+        // Close on overlay click
+        summerPopup.addEventListener('click', function (e) {
+            if (e.target === summerPopup) {
+                hidePopup(summerPopup);
+                clearInterval(countdownInterval);
+            }
+        });
+        closeOnCTAClick(summerPopup);
+    }
+
+    // ------ POPUP 2: Exit-Intent Popup ------
+    var exitPopup = document.getElementById('exitPopup');
+    if (exitPopup && !localStorage.getItem('vidyatam_exit_popup_seen')) {
+        var exitTriggered = false;
+        document.addEventListener('mouseleave', function (e) {
+            if (e.clientY <= 5 && !exitTriggered) {
+                exitTriggered = true;
+                showPopup(exitPopup);
+                localStorage.setItem('vidyatam_exit_popup_seen', '1');
+            }
+        });
+
+        document.getElementById('epClose').addEventListener('click', function () {
+            hidePopup(exitPopup);
+        });
+        exitPopup.addEventListener('click', function (e) {
+            if (e.target === exitPopup) hidePopup(exitPopup);
+        });
+        closeOnCTAClick(exitPopup);
+    }
+})();

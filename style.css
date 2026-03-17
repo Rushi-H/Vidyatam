@@ -1598,3 +1598,246 @@ ul {
         font-size: 1.25rem;
     }
 }
+
+/* =========================================
+   SUMMER CAMP POPUPS
+   ========================================= */
+
+/* Overlay backdrop */
+.sp-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    backdrop-filter: blur(4px);
+}
+.sp-overlay.sp-visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Modal card */
+.sp-modal {
+    background: #fff;
+    border-radius: 24px;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.3);
+    transform: scale(0.88);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.sp-overlay.sp-visible .sp-modal {
+    transform: scale(1);
+}
+
+/* Close button */
+.sp-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    z-index: 10;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    font-size: 1rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: background 0.2s, transform 0.2s;
+}
+.sp-close:hover { background: #f0f0f0; transform: rotate(90deg); }
+
+/* Top colored bar */
+.sp-topbar {
+    background: linear-gradient(135deg, var(--core-royal-blue), var(--core-blue-light));
+    padding: 18px 24px 16px;
+    text-align: center;
+}
+.sp-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 5px 16px;
+    border-radius: 40px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Body */
+.sp-body { padding: 24px 28px 28px; }
+
+.sp-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--core-royal-blue);
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+.sp-subtitle {
+    color: #555;
+    font-size: 0.97rem;
+    margin-bottom: 16px;
+}
+
+/* Detail list */
+.sp-details {
+    list-style: none;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.sp-details li {
+    font-size: 0.95rem;
+    color: #444;
+    padding: 6px 12px;
+    background: #f5f8ff;
+    border-radius: 8px;
+    border-left: 3px solid var(--core-royal-blue);
+}
+
+/* Countdown timer */
+.sp-countdown-wrap {
+    background: linear-gradient(135deg, var(--core-royal-blue), #1a56db);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+.sp-countdown-label {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.sp-countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.sp-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 52px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 8px 10px;
+}
+.sp-unit span {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #FFD23F;
+    font-family: 'Inter', sans-serif;
+    line-height: 1;
+}
+.sp-unit small {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.7);
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+}
+.sp-colon {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 14px;
+}
+
+/* Urgency strip */
+.sp-urgency {
+    background: #fff3e0;
+    color: #b45309;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+/* Buttons */
+.sp-btns {
+    display: flex;
+    gap: 12px;
+}
+.sp-btn-primary {
+    flex: 1;
+    background: linear-gradient(135deg, var(--core-royal-blue), #1a56db);
+    color: #fff;
+    text-align: center;
+    padding: 13px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 6px 20px rgba(0,51,160,0.3);
+}
+.sp-btn-primary:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+.sp-btn-wa {
+    flex: 1;
+    background: #25D366;
+    color: #fff;
+    text-align: center;
+    padding: 13px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+}
+.sp-btn-wa:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+/* Exit-intent specific overrides */
+.ep-overlay .sp-topbar {
+    background: linear-gradient(135deg, #FF6B35, #ff006e);
+}
+.ep-title { color: #FF6B35; }
+.ep-ribbon {
+    background: linear-gradient(135deg, #FF6B35, #ff006e);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+.ep-modal .sp-details li { border-left-color: #FF6B35; }
+.ep-modal .sp-btn-primary {
+    background: linear-gradient(135deg, #FF6B35, #ff006e);
+    box-shadow: 0 6px 20px rgba(255,107,53,0.3);
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+    .sp-modal { border-radius: 18px; }
+    .sp-title { font-size: 1.4rem; }
+    .sp-body { padding: 20px 18px 22px; }
+    .sp-btns { flex-direction: column; }
+    .sp-unit { min-width: 42px; padding: 6px 8px; }
+    .sp-unit span { font-size: 1.3rem; }
+}
