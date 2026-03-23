@@ -428,6 +428,36 @@
             });
         }
     </script>
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        // Confetti trigger for Offer Section
+        const offerSection = document.querySelector('.offer-section');
+        if (offerSection && typeof confetti === 'function') {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Fire colorful 3D confetti from both sides for 3 seconds
+                        var duration = 3000;
+                        var end = Date.now() + duration;
+                        var colors = ['#FF6B35', '#ff006e', '#22c55e', '#FFD23F', '#0033a0'];
+
+                        (function frame() {
+                            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: colors, zIndex: 9999 });
+                            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: colors, zIndex: 9999 });
+                            if (Date.now() < end) { requestAnimationFrame(frame); }
+                        }());
+                        
+                        // Fire only once
+                        observer.unobserve(offerSection);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            observer.observe(offerSection);
+        }
+    </script>
 </body>
 
 </html>
