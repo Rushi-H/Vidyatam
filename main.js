@@ -221,9 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ------ POPUP 1: Auto Popup with Countdown ------
     var summerPopup = document.getElementById('summerPopup');
-    var popupSeen = false;
-    try { popupSeen = localStorage.getItem('vidyatam_popup_seen'); } catch (e) { }
-    if (summerPopup && !popupSeen) {
+    if (summerPopup) {
         // Countdown to April 1 2026
         var campDate = new Date('2026-04-01T00:00:00').getTime();
         function updateCountdown() {
@@ -251,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show after 3 seconds
         setTimeout(function () {
             showPopup(summerPopup);
-            try { localStorage.setItem('vidyatam_popup_seen', '1'); } catch (e) { }
         }, 300);
 
         // Close button
@@ -271,15 +268,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ------ POPUP 2: Exit-Intent Popup ------
     var exitPopup = document.getElementById('exitPopup');
-    var exitPopupSeen = false;
-    try { exitPopupSeen = localStorage.getItem('vidyatam_exit_popup_seen'); } catch (e) { }
-    if (exitPopup && !exitPopupSeen) {
+    if (exitPopup) {
         var exitTriggered = false;
         document.addEventListener('mouseleave', function (e) {
             if (e.clientY <= 5 && !exitTriggered) {
                 exitTriggered = true;
                 showPopup(exitPopup);
-                try { localStorage.setItem('vidyatam_exit_popup_seen', '1'); } catch (e) { }
             }
         });
 
@@ -291,4 +285,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         closeOnCTAClick(exitPopup);
     }
+
+    // ── Show popup on EVERY page load/refresh ──
+    const popup = document.getElementById('exitPopup');
+    const closeBtn = document.getElementById('epClose');
+
+    // Close on button click
+    closeBtn.addEventListener('click', () => {
+        popup.classList.add('hidden');
+    });
+
+    // Close when clicking outside the modal
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            popup.classList.add('hidden');
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') popup.classList.add('hidden');
+    });
 })();
