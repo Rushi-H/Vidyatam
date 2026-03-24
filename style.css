@@ -1933,20 +1933,7 @@ ul {
     --white: #FFFFFF;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
-body {
-    font-family: 'Baloo 2', cursive;
-    background: #f0f4f8;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 /* ── OVERLAY ── */
 .ep-overlay {
