@@ -65,12 +65,12 @@
                     <a href="https://wa.me/919860117531?text=Hello%20I%20want%20to%20join%20Vidyatam%20Classes%20Summer%20Camp%202026"
                         target="_blank" class="btn-wa">💬 WhatsApp करा</a>
                 </div>
-                <p class="urgency-text">⚠️ पहिल्या 10 विद्यार्थ्यांना <strong>Special Discount!</strong></p>
+                <p class="urgency-text">⚠️ पहिल्या 20 विद्यार्थ्यांना <strong>Special Discount!</strong></p>
             </div>
             <div class="hero-img">
                 <img src="./assets/summer_hero.png" alt="Happy children at summer camp">
                 <div class="hero-float-badge">
-                    <span class="badge-num">2.5 तास</span>
+                    <span class="badge-num">2 तास</span>
                     <span class="badge-lbl">दररोज</span>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                     मुलांना शिकताना <em>आनंद मिळावा</em> हा आमचा मुख्य उद्देश आहे.</p>
                 <div class="about-stats">
                     <div class="astat"><span>LKG–8वी</span><small>सर्व वर्ग</small></div>
-                    <div class="astat"><span>2.5 तास</span><small>दररोज</small></div>
+                    <div class="astat"><span>2 तास</span><small>दररोज</small></div>
                     <div class="astat"><span>1 Apr</span><small>सुरुवात</small></div>
                 </div>
             </div>
@@ -171,7 +171,7 @@
                 <p class="sched-sub">फक्त <strong>2 तास</strong> — अभ्यास + मज्जा दोन्ही!</p>
                 <div class="sched-items">
                     <div class="sched-item">
-                        <div class="sched-time">60 मिनिटे</div>
+                        <div class="sched-time">45 मिनिटे</div>
                         <div class="sched-dot study-dot"></div>
                         <div class="sched-detail">
                             <h4>📖 अभ्यास</h4>
@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     <div class="sched-item">
-                        <div class="sched-time">30 मिनिटे</div>
+                        <div class="sched-time">15 मिनिटे</div>
                         <div class="sched-dot speak-dot"></div>
                         <div class="sched-detail">
                             <h4>🗣️ Speaking Practice</h4>
@@ -245,7 +245,7 @@
             </div>
             <div class="offer-content">
                 <div class="offer-badge">🔥 मर्यादित ऑफर!</div>
-                <h2>पहिल्या 10 विद्यार्थ्यांना<br><span>Special Discount! 🎁</span></h2>
+                <h2>पहिल्या 20 विद्यार्थ्यांना<br><span>Special Discount! 🎁</span></h2>
                 <p>आजच नाव नोंदवा आणि विशेष सवलत मिळवा!</p>
                 <div class="offer-ctas">
                     <a href="#register" class="btn-enroll">🎯 आजच Enroll करा</a>
@@ -270,7 +270,7 @@
                     <p>"माझ्या मुलाचा अभ्यास खूप सुधारला आणि त्याला शाळेत जाण्याची आवड निर्माण झाली!"</p>
                     <div class="testi-author">
                         <div class="testi-avatar">सु</div>
-                        <div><strong>अश्विनी गुंड</strong><br><small> १ ली च्या विद्यार्थ्याचे पालक</small></div>
+                        <div><strong>सुनिता पाटील</strong><br><small>3री च्या विद्यार्थ्याचे पालक</small></div>
                     </div>
                 </div>
                 <div class="testi-card">
@@ -278,15 +278,15 @@
                     <p>"Ajetrao Ma'am खूप चांगल्या प्रकारे शिकवतात. माझ्या मुलीचा आत्मविश्वास वाढला!"</p>
                     <div class="testi-author">
                         <div class="testi-avatar">रे</div>
-                        <div><strong>शिवाजी भाकरे </strong><br><small>४ थी च्या विद्यार्थिनीचे पालक</small></div>
+                        <div><strong>रेखा शिंदे</strong><br><small>5वी च्या विद्यार्थिनीचे पालक</small></div>
                     </div>
                 </div>
                 <div class="testi-card">
                     <div class="testi-stars">★★★★★</div>
-                    <p>"उन्हाळ्याचे 30 दिवस मुलांसाठी खूप उपयुक्त ठरतील. अभ्यास आणि मज्जा दोन्ही मिळाले!"</p>
+                    <p>"उन्हाळ्याचे 2 महिने मुलांसाठी खूप उपयुक्त ठरले. अभ्यास आणि मज्जा दोन्ही मिळाले!"</p>
                     <div class="testi-author">
                         <div class="testi-avatar">अ</div>
-                        <div><strong>शाहिनाज आतार </strong><br><small>6वी च्या विद्यार्थ्याचे पालक</small></div>
+                        <div><strong>अनिल देशमुख</strong><br><small>6वी च्या विद्यार्थ्याचे पालक</small></div>
                     </div>
                 </div>
             </div>
@@ -448,13 +448,13 @@
                             confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: colors, zIndex: 9999 });
                             if (Date.now() < end) { requestAnimationFrame(frame); }
                         }());
-
+                        
                         // Fire only once
                         observer.unobserve(offerSection);
                     }
                 });
-            }, { threshold: 0.4 });
-
+            }, { threshold: 0.3 });
+            
             observer.observe(offerSection);
         }
     </script>
